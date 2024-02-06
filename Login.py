@@ -1,84 +1,38 @@
-import flet as ft
+from tkinter import *
+root = Tk()
+root.title('Sistema ChocoBaha')
+root.geometry('300x400')
+root.config(padx=35, pady=35)
 
-conteiner = ft.Container(
-    ft.Column([
-        ft.Container(
-            ft.Text(
-                'Inicio de Sesión',
-                width=320,
-                size=30,
-                text_align='center',
-                weight='w900'
-            ),
-            padding=ft.padding.only(20, 20)
-        ),
-        ft.Container(
-            ft.TextField(
-                width=280,
-                height=40,
-                hint_text='Nombre de Usuario',
-                border='underline',
-                color='black',
-                prefix_icon=ft.icons.VERIFIED_USER_ROUNDED
-            ),
-            padding=ft.padding.only(20, 20)
-        ),
-        ft.Container(
-            ft.TextField(
-                width=280,
-                height=40,
-                hint_text='Contraseña',
-                border='underline',
-                color='black',
-                prefix_icon=ft.icons.LOCK,
-                password=True
-            ),
-            padding=ft.padding.only(20, 20)
-        ),
-        ft.Container(
-            ft.ElevatedButton(
-                text='Iniciar',
-                width=280,
-                bgcolor='black'
-            ),
-            padding=ft.padding.only(20, 20)
-        ),
-        ft.Container(
-            ft.Row([
-                ft.Text('¿Desea crear un usuario?'),
-                ft.TextButton('Crear Usuario')
-            ],
-                alignment=ft.MainAxisAlignment.CENTER
-            )
-        )
+# Ventana de inicio de seión
+texto = Label(root, text='Introduzca su usuario y contraseña', font=('Arial', 12)).grid(
+    row=0, column=3)
+
+Usuario = Entry(root, width=25)
+Usuario.grid(row=1, column=3)
+
+password = Entry(root, width=25, show='*')
+password.grid(row=2, column=3)
+
+# Botón y nueva ventana
 
 
-
-    ],
-        alignment=ft.MainAxisAlignment.SPACE_EVENLY
-    ),
-
-
-
-
-    border_radius=20,
-    width=320,
-    height=500,
-    gradient=ft.LinearGradient([
-        ft.colors.BROWN
+def click_botón():
+    ventana_nueva = Toplevel()
+    ventana_nueva.title('Calculadora de Merma')
+    ventana_nueva.geometry('400x500')
+    ventana_nueva.config(padx=110, pady=60)
+    texto2 = Label(ventana_nueva, text='Introduzca el peso',
+                   font=('Arial', 14)).grid()
+    Entrada_peso = Entry(ventana_nueva, text='Peso en Kg', width=10,
+                         font=('arial, 14')).grid()
+    Boton_2 = Button(ventana_nueva, text='Calcular',
+                     command=click_botón).grid(pady=5)
 
 
-    ])
+botón1 = Button(root, text='Iniciar', padx=75, pady=10,
+                command=click_botón).grid(row=3, column=3)
 
 
-)
+root.mainloop()
 
-
-def main(page: ft.Page):
-    page.bgcolor = 'black'
-    page.vertical_alignment = 'center'
-    page.horizontal_alignment = 'center'
-    page.add(conteiner)
-
-
-ft.app(target=main)
